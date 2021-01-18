@@ -4,8 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meteo</title>
+    <link rel="stylesheet" href="style/style.css"/>
+    <script src="script/echarts/echarts.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@300&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
-    
+    <header>
+        <div id="header-container">
+            <p>
+                Je suis une chaîne de caractères.
+            </p>
+        </div>
+    </header>
+    <div id="container">
+        <div id="map-container">
+            <p>
+                Je suis une chaîne de caractères.
+            </p>
+        </div>
+        <div id="data-container">
+            <div id="raw-data">
+                <div class="data">
+                    10°
+                </div>
+                <div class="data">
+                    1mm
+                </div>
+                <div class="data">
+                    Lyon
+                </div>
+            </div>
+            <canvas id="test-graph"></canvas>
+        </div>
+    </div>
 </body>
+<script>
+    const myChart = echarts.init(document.getElementById('test-graph'));
+    const option = {
+        xAxis: {
+            type: 'category',
+            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [{
+            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            type: 'line'
+        }]
+    };
+    myChart.setOption(option);
+</script>
 </html>
