@@ -1,6 +1,14 @@
+<<<<<<< HEAD
 	function createMap(lat,long,sca,cont,w,h){
     var svg = d3.select("div#"+cont).append("svg").attr("preserveAspectRatio", "xMinYMin meet").style("background-color","#333333")
     .attr("viewBox", "0 0 " + w + " " + h).style("display","flex")
+=======
+	function createMap(lat,long,sca,cont){
+    var w = 1400;
+    var h = 700;
+    var svg = d3.select("div#"+cont).append("svg").attr("preserveAspectRatio", "xMinYMin meet").style("background-color","#c9e8fd")
+    .attr("viewBox", "0 0 " + w + " " + h)
+>>>>>>> Bryan
     .classed("svg-content", true);
     var projection = d3.geoMercator().translate([w/2, h/2]).scale(sca).center([lat,long]);
     var path = d3.geoPath().projection(projection);
@@ -40,6 +48,7 @@ Promise.all([worldmap, cities]).then(function(values){
 
 	});
 }
+<<<<<<< HEAD
 
 function createDotMap(lat,long,sca,cont,w,h){
   var svg = d3.select("div#"+cont).append("svg").attr("preserveAspectRatio", "xMinYMin meet").style("background-color","#333333")
@@ -84,3 +93,5 @@ Promise.all([worldmap, cities]).then(function(values){
 });
 }
 
+=======
+>>>>>>> Bryan
