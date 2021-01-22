@@ -1,4 +1,4 @@
-import TurboFormater from "./turboFormater.js";
+import TurboFormater from "./dataManagement/turboFormater.js";
 
 const DOM = {
     day : document.getElementById("day"),

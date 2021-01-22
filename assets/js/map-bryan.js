@@ -1,21 +1,14 @@
-<<<<<<< HEAD
+
 	function createMap(lat,long,sca,cont,w,h){
     var svg = d3.select("div#"+cont).append("svg").attr("preserveAspectRatio", "xMinYMin meet").style("background-color","#333333")
     .attr("viewBox", "0 0 " + w + " " + h).style("display","flex")
-=======
-	function createMap(lat,long,sca,cont){
-    var w = 1400;
-    var h = 700;
-    var svg = d3.select("div#"+cont).append("svg").attr("preserveAspectRatio", "xMinYMin meet").style("background-color","#c9e8fd")
-    .attr("viewBox", "0 0 " + w + " " + h)
->>>>>>> Bryan
     .classed("svg-content", true);
     var projection = d3.geoMercator().translate([w/2, h/2]).scale(sca).center([lat,long]);
     var path = d3.geoPath().projection(projection);
 
   // load data  
-var worldmap = d3.json("countries.geojson");
-var cities = d3.csv("cities.csv");
+var worldmap = d3.json("assets/data/countries.geojson");
+var cities = d3.csv("assets/data/cities.csv");
 
 Promise.all([worldmap, cities]).then(function(values){    
  // draw map
@@ -48,7 +41,6 @@ Promise.all([worldmap, cities]).then(function(values){
 
 	});
 }
-<<<<<<< HEAD
 
 function createDotMap(lat,long,sca,cont,w,h){
   var svg = d3.select("div#"+cont).append("svg").attr("preserveAspectRatio", "xMinYMin meet").style("background-color","#333333")
@@ -58,10 +50,10 @@ function createDotMap(lat,long,sca,cont,w,h){
   var path = d3.geoPath().projection(projection);
 
 // load data  
-var worldmap = d3.json("countries.geojson");
-var cities = d3.csv("cities.csv");
+var worldmap = d3.json("assets/data/countries.geojson");
+var cities = d3.csv("assets/data/cities.csv");
 
-Promise.all([worldmap, cities]).then(function(values){    
+Promise.all([worldmap, cities]).then((values) => {
 // draw map
   svg.selectAll("path")
       .data(values[0].features)
@@ -75,8 +67,8 @@ Promise.all([worldmap, cities]).then(function(values){
       .enter()
       .append("circle")
       .attr("class","circles")
-      .attr("cx", function(d) {return projection([d.Longitude, d.Lattitude])[0];})
-      .attr("cy", function(d) {return projection([d.Longitude, d.Lattitude])[1];})
+      .attr("cx", (d) => projection([d.Longitude, d.Lattitude])[0])
+      .attr("cy", (d) => projection([d.Longitude, d.Lattitude])[1])
       .attr("r", "1px"),
 // add labels
   svg.selectAll("text")
@@ -86,12 +78,10 @@ Promise.all([worldmap, cities]).then(function(values){
       .text(function(d) {
                   return d.City;
              })
-      .attr("x", function(d) {return projection([d.Longitude, d.Lattitude])[0] + 5;})
-      .attr("y", function(d) {return projection([d.Longitude, d.Lattitude])[1] + 15;})
+      .attr("x", (d) => projection([d.Longitude, d.Lattitude])[0] + 5)
+      .attr("y", (d) => projection([d.Longitude, d.Lattitude])[1] + 15)
       .attr("class","labels");
 
 });
 }
 
-=======
->>>>>>> Bryan

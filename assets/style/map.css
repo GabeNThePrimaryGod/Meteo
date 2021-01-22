@@ -1,3 +1,10 @@
+.map-container {
+    height: 100%;
+    width: 66%;
+    border-right: 2px solid rgb(81, 81, 81);
+    margin-right: 0.2em;
+}
+
 .continent {
 	fill: #f0e4dd;
 	stroke: #e0cabc;
@@ -12,7 +19,6 @@
 	font-family: sans-serif;
 	font-size: 11px;
 	fill: #3c373d;
-<<<<<<< HEAD
 }
 
 .container {
@@ -37,6 +43,4 @@
 
 .flexingz {
 	display: flex;
-=======
->>>>>>> Bryan
 }
