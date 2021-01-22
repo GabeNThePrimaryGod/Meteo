@@ -1,0 +1,63 @@
+.side-container {
+    background-color: var(--background);
+}
+
+.right-tab-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0.1em;
+    width: 33%;
+}
+
+.swipe {
+    height: 55em;
+}
+
+#general-swipe {
+    background-color: rgb(56, 56 ,56);
+}   
+
+#temperature-swipe {
+    background-color: rgb(56, 53 ,53);
+}
+
+#pluie-swipe {
+    background-color: rgb(53, 53 ,56);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+#raw-data {
+    display: flex;
+}
+
+#test-graph {
+    width: 400px;
+    height: 250px;
+}
+
+.data {
+    font-size: 4em;
+    padding: 0.15em;
+    margin: 0.1em;
+}
+*/
