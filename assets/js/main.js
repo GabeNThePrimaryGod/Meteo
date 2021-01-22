@@ -22,29 +22,24 @@ async function onStart()
         const station = DOM.station.value;
         const hour = DOM.hour.value;
 
-        console.log(day.valueOf(), station.valueOf(), hour.valueOf())
-
         if(day && station && hour)
         {
             console.log("day & station & hour") 
             console.log("day & station & hour", turboFormater.getDay(day).getStation(station).getHour(hour))
         }
-        else if(day && station)
+        if(day && station)
         {
             console.log("day & station")
             console.log("day & station", turboFormater.getDay(day).getStation(station).hours)
         }
-        else if(day && hour)
+        if(day && hour)
         {
             console.log("day & hour")
             console.log("day & hour", turboFormater.getDay(day).getHours(hour))
         }
-        else if(day)
+        if(day)
         {
             console.log("day")
-            console.log("day", turboFormater.getDay(day))
-
-            console.log("day", turboFormater.getDay(day).station.map(s => s.data));
             console.log("day", turboFormater.getDay(day).hours.map(h => h.data));
         }
     });

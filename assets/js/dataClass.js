@@ -33,7 +33,7 @@ export class Day {
             new Station(elem, this).hours.map(hour => hours.push(hour));
         });
 
-        return hours
+        return hours;
     }
 
     getHours(h)
@@ -41,15 +41,15 @@ export class Day {
         const hours = [];
 
         Object.values(this._.station).map(elem => { 
-            elem = new Station(elem, this)
+            elem = new Station(elem, this);
             
-            if(elem.getHour(h))
+            if(elem._.hours[h])
             {
-                hours.push(elem.getHour(h))
+                hours.push(elem.getHour(h));
             }
         });
 
-        return hours
+        return hours;
     }
 
     get data() {
@@ -83,12 +83,12 @@ export class Station {
             return null
         }
 
-        return new Hour(this._.hours[h], this.day, this);
+        return new Hour(this._.hours[h], this);
     }
 
     get hours()
     {
-        return Object.values(this._.hours).map(elem => elem = new Hour(elem, this.day, this));
+        return Object.values(this._.hours).map(elem => elem = new Hour(elem, this));
     }
 
     get data() {
@@ -96,18 +96,18 @@ export class Station {
             "name" : this.name,
             "averageTemp" : this.averageTemp,
             "averageHumidity" : this.averageHumidity,
-            "lat" : this.station.lat,
-            "lng" : this.station.lng    
+            "lat" : this.lat,
+            "lng" : this.lng,
+            "day" : this.day.data
         }
     }
 }
 
 export class Hour {
     
-    constructor(hour, day, station)
+    constructor(hour, station)
     {
         this._ = hour
-        this.day = day;
         this.station = station;
     }
 
@@ -120,8 +120,7 @@ export class Hour {
             "hour" : this.hour,
             "temp" : this.temp,
             "humidity" : this.humidity,
-            "lat" : this.station.lat,
-            "lng" : this.station.lng
+            "station" : this.station.data
         }
     }  
 }
