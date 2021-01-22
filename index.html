@@ -1,18 +1,188 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meteo</title>
+
+    <!-- MATERIALIZE -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+    <!-- MATERIALIZE -->
+
+    <!-- LIB -->
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/fontawesome/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="style/fontawesome/css/solid.min.css" />
+
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <!-- LIB -->
+
+    <!-- ANOU -->
+    <link rel="stylesheet" href="style/global.css" />
+    <script src="./style/dropdown.js"></script>
+    <!-- ANOU -->
+
 </head>
+
 <body>
-    <input type="number" id="day" placeholder="day">
-    <input type="text" id="station" placeholder="station">
-    <input type="number" id="hour" placeholder="hour">
-    <input type="button" id="show" value="show">
+
+    <header>
+
+        <div class="header-container">
+            <div class="row">
+                <div class="col s8">
+
+                    <form action="#">
+                        <p class="range-field">
+                            <input type="range" id="timeline" min="0" max="28" />
+                        </p>
+                    </form>
+
+                </div>
+                <div class="col s4">
+                    
+                    <!--<div class="dropdown">
+                        <button onclick="dropDown()" 
+                        class="waves-effect waves-dark btn">Dropdown</button>
+                        <div id="dropdown">
+                          <div onclick="dropDownClick(this)" value="1">Home</div>
+                          <div onclick="dropDownClick(this)" value="2">About</div>
+                          <div onclick="dropDownClick(this)" value="3">Contact</div>
+                        </div>
+                      </div>
+                    -->
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+
+    <div class="body-container">
+        <div id="map-container" class="map-container">
+
+            <!-- PRELOADER -->
+            <div class="map-preloader">
+
+                <div class="preloader-wrapper big active">
+                    <div class="spinner-layer spinner-blue-only">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- PRELOADER -->
+        </div>
+        <div class="right-tab-container">
+            <ul class="tabs side-container">
+                <li class="tab col s3"><a href="#general-swipe" class="active">GENERAL</a></li>
+                <li class="tab col s3"><a href="#temperature-swipe">TEMPERATURE</a></li>
+                <li class="tab col s3"><a href="#pluie-swipe">PLUIE</a></li>
+                <li class="tab col s3"><a href="#pluie-swipe2">PLUIE</a></li>
+            </ul>
+            <div id="general-swipe" class="col s12 swipe">Test 1</div>
+            <div id="temperature-swipe" class="col s12 swipe">Test 2</div>
+            <div id="pluie-swipe" class="col s12 swipe">Test 3</div>
+            <div id="pluie-swipe2" class="col s12 swipe">Test 3</div>
+        </div>
+    </div>
     
 </body>
-<footer>
-    <script type="module" src="assets/js/main.js"></script>
-</footer>
+<script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // set the dimensions and margins of the graph
+    var margin = {
+            top: 10,
+            right: 30,
+            bottom: 30,
+            left: 60
+        },
+        width = 460 - margin.left - margin.right,
+        height = 250 - margin.top - margin.bottom;
+
+    // append the svg object to the body of the page
+    var svg = d3.select("#test-graph")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform",
+            "translate(" + margin.left + "," + margin.top + ")");
+
+    //Read the data
+    d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/3_TwoNumOrdered_comma.csv",
+
+        // When reading the csv, I must format variables:
+        function (d) {
+            return {
+                date: d3.timeParse("%Y-%m-%d")(d.date),
+                value: d.value
+            }
+        },
+
+        // Now I can use this dataset:
+        function (data) {
+
+            // Add X axis --> it is a date format
+            var x = d3.scaleTime()
+                .domain(d3.extent(data, function (d) {
+                    return d.date;
+                }))
+                .range([0, width]);
+            svg.append("g")
+                .attr("transform", "translate(0," + height + ")")
+                .call(d3.axisBottom(x));
+
+            // Add Y axis
+            var y = d3.scaleLinear()
+                .domain([0, d3.max(data, function (d) {
+                    return +d.value;
+                })])
+                .range([height, 0]);
+            svg.append("g")
+                .call(d3.axisLeft(y));
+
+            // Add the line
+            svg.append("path")
+                .datum(data)
+                .attr("fill", "none")
+                .attr("stroke", "steelblue")
+                .attr("stroke-width", 1.5)
+                .attr("d", d3.line()
+                    .x(function (d) {
+                        return x(d.date)
+                    })
+                    .y(function (d) {
+                        return y(d.value)
+                    })
+                )
+
+        })
+</script>
+
 </html>
