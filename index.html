@@ -7,7 +7,7 @@
     <title>Meteo</title>
 
     <!-- MATERIALIZE -->
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
     <!-- MATERIALIZE -->
@@ -22,6 +22,7 @@
 
     <!-- ANOU -->
     <link rel="stylesheet" href="style/global.css" />
+    <script src="./style/dropdown.js"></script>
     <!-- ANOU -->
 
 </head>
@@ -42,14 +43,16 @@
 
                 </div>
                 <div class="col s4">
-                    <!-- 
-                        ------------------------------------ RECHERCHE
-                        <div class="input-field col">
-                            <i class="fas fa-search"></i>
-                            <input type="text" id="autocomplete-input" class="autocomplete">
-                            <label for="autocomplete-input">Autocomplete</label>
+                    
+                    <!--<div class="dropdown">
+                        <button onclick="dropDown()" 
+                        class="waves-effect waves-dark btn">Dropdown</button>
+                        <div id="dropdown">
+                          <div onclick="dropDownClick(this)" value="1">Home</div>
+                          <div onclick="dropDownClick(this)" value="2">About</div>
+                          <div onclick="dropDownClick(this)" value="3">Contact</div>
                         </div>
-                        ------------------------------------ RECHERCHE 
+                      </div>
                     -->
                 </div>
             </div>
@@ -59,26 +62,58 @@
 
 
     <div class="body-container">
-        <div class="map-container">
-            MAP
+        <div id="map-container" class="map-container">
+
+            <!-- PRELOADER -->
+            <div class="map-preloader">
+
+                <div class="preloader-wrapper big active">
+                    <div class="spinner-layer spinner-blue-only">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- PRELOADER -->
         </div>
         <div class="right-tab-container">
             <ul class="tabs side-container">
                 <li class="tab col s3"><a href="#general-swipe" class="active">GENERAL</a></li>
                 <li class="tab col s3"><a href="#temperature-swipe">TEMPERATURE</a></li>
                 <li class="tab col s3"><a href="#pluie-swipe">PLUIE</a></li>
+                <li class="tab col s3"><a href="#pluie-swipe2">PLUIE</a></li>
             </ul>
             <div id="general-swipe" class="col s12 swipe">Test 1</div>
             <div id="temperature-swipe" class="col s12 swipe">Test 2</div>
             <div id="pluie-swipe" class="col s12 swipe">Test 3</div>
+            <div id="pluie-swipe2" class="col s12 swipe">Test 3</div>
         </div>
-
     </div>
-
+    
 </body>
 <script>
-    const elem = document.getElementById("")
-    var instance = M.Tabs.getInstance(false);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // set the dimensions and margins of the graph
     var margin = {
