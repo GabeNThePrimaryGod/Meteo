@@ -5,12 +5,12 @@ html {
 }
 
 #header-container {
-    height: 5em;
+    height: 6em;
     width: auto;
     border-bottom: 2px solid rgb(81, 81, 81);
 }
 
-#container {
+#data {
     display: flex;
     height: 100%;
 }
@@ -44,4 +44,8 @@ html {
     /*border: 2px solid rgb(81, 81, 81);*/
     padding: 0.15em;
     margin: 0.1em;
+}
+
+.dark-tab {
+    background-color: rgb(51, 51, 51);
 }

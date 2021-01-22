@@ -1,59 +1,154 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meteo</title>
-    <link rel="stylesheet" href="style/style.css"/>
-    <script src="script/echarts/echarts.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@300&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meteo</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style/fontawesome/css/fontawesome.min.css" />
+  <link rel="stylesheet" href="style/fontawesome/css/solid.min.css" />
+  <link rel="stylesheet" href="style/style.css" />
+  <script src="https://d3js.org/d3.v4.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
 </head>
+
 <body>
-    <header>
-        <div id="header-container">
-            <p>
-                Je suis une chaîne de caractères.
+  <header>
+    <div id="header-container">
+      <div class="row">
+        <div class="col s8">
+          <form action="#">
+            <p class="range-field">
+              <input type="range" id="timeline" min="0" max="28" />
             </p>
+          </form>
         </div>
-    </header>
-    <div id="container">
-        <div id="map-container">
-            <p>
-                Je suis une chaîne de caractères.
-            </p>
+        <div class="col s4">
+          <!--
+          <div class="input-field col">
+            <i class="fas fa-search"></i>
+            <input type="text" id="autocomplete-input" class="autocomplete">
+            <label for="autocomplete-input">Autocomplete</label>
+          </div>
+          -->
         </div>
-        <div id="data-container">
-            <div id="raw-data">
-                <div class="data">
-                    10°
-                </div>
-                <div class="data">
-                    1mm
-                </div>
-                <div class="data">
-                    Lyon
-                </div>
-            </div>
-            <canvas id="test-graph"></canvas>
-        </div>
+      </div>
     </div>
+  </header>
+  <div id="data">
+    <div id="map-container">
+      <p>
+        Je suis une chaîne de caractères.
+      </p>
+    </div>
+    <div id="data-container">
+      <div class="row">
+        <div class="col s12">
+          <ul class="tabs tabs-fixed-width z-depth-1">
+            <li class="tab dark-tab"><a class="active" href="#test2">Infos générales</a></li>
+            <li class="tab dark-tab"><a href="#test1">Température</a></li>
+            <li class="tab dark-tab"><a href="#test0">Pluviosité</a></li>
+          </ul>
+          <div id="test1" class="col s12">
+            <div id="raw-data">
+              <div class="data">
+                10°
+              </div>
+              <div class="data">
+                1mm
+              </div>
+              <div class="data">
+                Lyon
+              </div>
+            </div>
+          </div>
+          <div id="test2" class="col s12">
+            <p>Test 2</p>
+          </div>
+          <div id="test3" class="col s12">
+            <p>Test 3</p>
+          </div>
+          <div id="test-graph"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 <script>
-    const myChart = echarts.init(document.getElementById('test-graph'));
-    const option = {
-        xAxis: {
-            type: 'category',
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-        },
-        yAxis: {
-            type: 'value'
-        },
-        series: [{
-            data: [820, 932, 901, 934, 1290, 1330, 1320],
-            type: 'line'
-        }]
-    };
-    myChart.setOption(option);
+  const elem = document.getElementById("")
+  var instance = M.Tabs.getInstance(false);
+
+  // set the dimensions and margins of the graph
+  var margin = {
+      top: 10,
+      right: 30,
+      bottom: 30,
+      left: 60
+    },
+    width = 460 - margin.left - margin.right,
+    height = 250 - margin.top - margin.bottom;
+
+  // append the svg object to the body of the page
+  var svg = d3.select("#test-graph")
+    .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform",
+      "translate(" + margin.left + "," + margin.top + ")");
+
+  //Read the data
+  d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/3_TwoNumOrdered_comma.csv",
+
+    // When reading the csv, I must format variables:
+    function (d) {
+      return {
+        date: d3.timeParse("%Y-%m-%d")(d.date),
+        value: d.value
+      }
+    },
+
+    // Now I can use this dataset:
+    function (data) {
+
+      // Add X axis --> it is a date format
+      var x = d3.scaleTime()
+        .domain(d3.extent(data, function (d) {
+          return d.date;
+        }))
+        .range([0, width]);
+      svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
+
+      // Add Y axis
+      var y = d3.scaleLinear()
+        .domain([0, d3.max(data, function (d) {
+          return +d.value;
+        })])
+        .range([height, 0]);
+      svg.append("g")
+        .call(d3.axisLeft(y));
+
+      // Add the line
+      svg.append("path")
+        .datum(data)
+        .attr("fill", "none")
+        .attr("stroke", "steelblue")
+        .attr("stroke-width", 1.5)
+        .attr("d", d3.line()
+          .x(function (d) {
+            return x(d.date)
+          })
+          .y(function (d) {
+            return y(d.value)
+          })
+        )
+
+    })
 </script>
+
 </html>
