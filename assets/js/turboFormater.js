@@ -53,4 +53,8 @@ export default class TurboFormater {
     {
         return new Day(this.data[day]);
     }
+
+    get days() {
+        return Object.values(this.data).map(day => new Day(day));
+    }
 }
