@@ -1,0 +1,16 @@
+@import url("color.css");
+@import url("responsive.css");
+@import url("right-tab.css");
+@import url("map.css");
+
+.header-container {
+    height: 6em;
+    width: auto;
+    border-bottom: 2px solid rgb(81, 81, 81);
+}
+
+.body-container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
