@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meteo</title>
 
+    <!-- MAP -->
+    <script type="text/javascript" src="https://d3js.org/d3.v5.min.js"></script>
+    <script type="text/javascript" src="/Meteo/assets/js/map-bryan.js"></script>
+    <link rel="stylesheet" type="text/css" href="/Meteo/assets/style/map.css">
+    <!-- MAP -->
+
     <!-- MATERIALIZE -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
@@ -17,7 +23,7 @@
     <link rel="stylesheet" href="style/fontawesome/css/fontawesome.min.css" />
     <link rel="stylesheet" href="style/fontawesome/css/solid.min.css" />
 
-    <script src="https://d3js.org/d3.v4.js"></script>
+    
     <!-- LIB -->
 
     <!-- ANOU -->
@@ -62,10 +68,19 @@
 
     <div class="body-container">
         <div id="map-container" class="map-container">
+            <div id="map1" class="svg-container "></div>
+                <div class="flexingz">
+                    <div id="map2" class="svg-container map2" ></div>
+                    <div id="map3" class="svg-container map2" ></div>
+                    <div id="map4" class="svg-container map2" ></div>
+                    <div id="map5" class="svg-container map2" ></div>
+                </div>
+                
+
 
             <!-- PRELOADER -->
             <div class="map-preloader">
-
+                
                 <div class="preloader-wrapper big active">
                     <div class="spinner-layer spinner-blue-only">
                         <div class="circle-clipper left">
@@ -101,6 +116,13 @@
 </body>
 <footer>
     <script type="module" src="/assets/js/main.js"></script>
+    <script>
+        createMap(5,46,2500,"map1",1400,700);
+        createMap(-61,15.5,15000,"map2",1400,700);
+        createMap(-54,4.2,5000,"map3",1400,700);
+        createMap(55.5,-21.2,30000,"map4",1400,700);
+        createMap(45,-12.8,40000,"map5", 1400,700);
+    </script>
 
     <!-- TEMPORAIRE -->
     <script src="/assets/js/map-bryan.js"></script>
