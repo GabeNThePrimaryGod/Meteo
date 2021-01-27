@@ -2,6 +2,7 @@
 @import url("responsive.css");
 @import url("right-tab.css");
 @import url("map.css");
+@import url("dropdown.css");
 
 .header-container {
     height: 6em;
@@ -22,8 +23,5 @@
     height: 55em;
 }
 
-#dropdown {
-    background-color: aliceblue;
-    display: block;
-    z-index: 999;
-}
+
+
