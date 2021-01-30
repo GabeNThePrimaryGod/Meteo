@@ -1,67 +1,43 @@
-
-	function createMap(lat,long,sca,cont,w,h){
-    var svg = d3.select("div#"+cont).append("svg").attr("preserveAspectRatio", "xMinYMin meet").style("background-color","#333333")
-    .attr("viewBox", "0 0 " + w + " " + h).style("display","flex")
+function createMap(lat, long, sca, container, w, h) {
+  
+  console.log(container);
+  
+  const svg = 
+  d3.select("div#" + container)
+    .append("svg")
+    .attr("preserveAspectRatio", "xMinYMin meet")
+    .style("background-color", "#333333")
+    .attr("viewBox", "0 0 " + w + " " + h)
+    .style("display", "flex")
     .classed("svg-content", true);
-    var projection = d3.geoMercator().translate([w/2, h/2]).scale(sca).center([lat,long]);
-    var path = d3.geoPath().projection(projection);
 
-    //point
-    var projection = d3.geoMercator().center(43.648833,7.209)
-    aa = [43.648833,7.209];
-    bb= [43.648833,7.209];
+  const projection = 
+    d3.geoMercator()
+    .translate([w / 2, h / 2])
+    .scale(sca)
+    .center([lat, long]);
+
+  const path = 
+    d3.geoPath()
+    .projection(projection);
 
   // load data  
-var worldmap = d3.json("/Meteo/assets/data/countries.geojson");
-var cities = d3.csv("/Meteo/assets/data/cities.csv");
-var ville = d3.json("/Meteo/assets/data/meteo.json")
+  var worldmap = d3.json("/assets/data/countries.geojson");
 
-
-Promise.all([worldmap, cities, ville]).then(function(values){    
- // draw map
+  Promise.all([worldmap]).then(function (values) {
+    // draw map
     svg.selectAll("path")
-        .data(values[0].features)
-        .enter()
-        .append("path")
-        .attr("class","continent")
-        .attr("d", path),
- // draw points
-    svg.selectAll("circle")
-        .data(values[1])
-        .enter()
-        .append("circle")
-        .attr("class","circles")
-        .attr("cx", function(d) {return projection([d.Longitude, d.Lattitude])[0];})
-        .attr("cy", function(d) {return projection([d.Longitude, d.Lattitude])[1];})
-        .attr("r", "1px"),
- // add labels
-    svg.selectAll("text")
-        .data(values[1])
-        .enter()
-        .append("text")
-        .text(function(d) {
-                    return d.City;
-               })
-        .attr("x", function(d) {return projection([d.Longitude, d.Lattitude])[0] + 5;})
-        .attr("y", function(d) {return projection([d.Longitude, d.Lattitude])[1] + 15;})
-        .attr("class","labels");
-
-
+      .data(values[0].features)
+      .enter()
+      .append("path")
+      .attr("class", "continent")
+      .attr("d", path)
   });
-  
-
 }
 
-function draw() {
-  g.selectAll(".pin")
-    .data(ville)
-    .enter().append("circle", ".pin")
-    .attr("r", 7)
-    .attr("class", "point")
-    .attr("transform", function (d) {
-      return "translate(" + projection([
-        43.648833,7.209
-      ]) + ")";
-    })
-    };
 
+createMap(5, 46, 2500, "map1", 1400, 700);
+createMap(-61, 15.5, 15000, "map2", 1400, 700);
+createMap(-54, 4.2, 5000, "map3", 1400, 700);
+createMap(55.5, -21.2, 30000, "map4", 1400, 700);
+createMap(45, -12.8, 40000, "map5", 1400, 700);

@@ -8,8 +8,8 @@
 
     <!-- MAP -->
     <script type="text/javascript" src="https://d3js.org/d3.v5.min.js"></script>
-    <script type="text/javascript" src="/Meteo/assets/js/map-bryan.js"></script>
-    <link rel="stylesheet" type="text/css" href="/Meteo/assets/style/map.css">
+    <script type="text/javascript" src="assets/js/map-bryan.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/style/map.css">
     <!-- MAP -->
 
     <!-- MATERIALIZE -->
@@ -20,8 +20,8 @@
 
     <!-- LIB -->
     <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style/fontawesome/css/fontawesome.min.css" />
-    <link rel="stylesheet" href="style/fontawesome/css/solid.min.css" />
+    <link rel="stylesheet" href="assets/style/fontawesome/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="assets/style/fontawesome/css/solid.min.css" />
 
     
     <!-- LIB -->
@@ -68,6 +68,7 @@
 
     <div class="body-container">
         <div id="map-container" class="map-container">
+
             <div id="map1" class="svg-container "></div>
                 <div class="flexingz">
                     <div id="map2" class="svg-container map2" ></div>
@@ -75,7 +76,6 @@
                     <div id="map4" class="svg-container map2" ></div>
                     <div id="map5" class="svg-container map2" ></div>
                 </div>
-                <script>d3.geoPath().projection(43.648833,7.209);</script>
 
                 
 
@@ -118,13 +118,6 @@
 </body>
 <footer>
     <script type="module" src="/assets/js/main.js"></script>
-    <script>
-        createMap(5,46,2500,"map1",1400,700);
-        createMap(-61,15.5,15000,"map2",1400,700);
-        createMap(-54,4.2,5000,"map3",1400,700);
-        createMap(55.5,-21.2,30000,"map4",1400,700);
-        createMap(45,-12.8,40000,"map5", 1400,700);
-    </script>
 
     <!-- TEMPORAIRE -->
     <script src="/assets/js/map-bryan.js"></script>
