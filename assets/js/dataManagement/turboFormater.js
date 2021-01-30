@@ -8,7 +8,7 @@ export default class TurboFormater {
     constructor(config = {}) 
     {
         this.dataPath = config.dataPath || "/assets/data/meteo.json";
-        this.indexs = config.indexs || ["d", "station", "n", "hours", "h"];
+        this.indexs = config.indexs || ["d", null, "n", null, "h"];
     }
 
     async load() {
