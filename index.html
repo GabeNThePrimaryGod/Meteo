@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meteo</title>
+    <title>Météo</title>
 
     <!-- MATERIALIZE -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="style/fontawesome/css/fontawesome.min.css" />
     <link rel="stylesheet" href="style/fontawesome/css/solid.min.css" />
 
-    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
     <!-- LIB -->
 
     <!-- ANOU -->
@@ -37,7 +37,7 @@
 
                     <form action="#">
                         <p class="range-field">
-                            <input type="range" id="timeline" min="0" max="28" />
+                            <input type="range" id="timeline" min="1" max="28" />
                         </p>
                     </form>
 
@@ -48,11 +48,7 @@
                         <button onclick="dropDown()" 
                         class="waves-effect waves-dark btn btn-dd">Dropdown</button>
                         <div id="dropdown-content" class="z-depth-3" style="display: none;">
-                          <div class="dd-content" onclick="dropDown()" value="1">Home</div>
-                          <div class="dd-content" onclick="dropDown()" value="2">About</div>
-                          <div class="dd-content" onclick="dropDown()" value="3">Contact</div>
-                          <div class="dd-content" onclick="dropDown()" value="4">Sus</div>
-                          <div class="dd-content" onclick="dropDown()" value="5">Ceci est une phrase longue à titre de stress test.</div>
+                          <!--<div class="dd-content" onclick="dropDown()" value="1">Home</div>-->
                         </div>
                     </div>
                     <!--DROPDOWN-->
@@ -92,12 +88,53 @@
                 <li class="tab col s3"><a href="#general-swipe" class="active">GENERAL</a></li>
                 <li class="tab col s3"><a href="#temperature-swipe">TEMPERATURE</a></li>
                 <li class="tab col s3"><a href="#pluie-swipe">PLUIE</a></li>
-                <li class="tab col s3"><a href="#pluie-swipe2">PLUIE</a></li>
+                <li class="tab col s3"><a href="#pluie-swipe2">FRANCE</a></li>
             </ul>
-            <div id="general-swipe" class="col s12 swipe">Test 1</div>
-            <div id="temperature-swipe" class="col s12 swipe">Test 2</div>
-            <div id="pluie-swipe" class="col s12 swipe">Test 3</div>
-            <div id="pluie-swipe2" class="col s12 swipe">Test 3</div>
+            <div id="general-swipe" class="col s12 swipe">
+                <div class="general-content">
+                    <label>
+                        <h3>Station sélectionnée : </h3>
+                        <h5 id="station">NICE</h5>
+                    </label>
+                    <label>
+                        <h3>Température : </h3>
+                        <h5 id="temp">--°C</h5>
+                    </label>
+                    <label>
+                        <h3>Pluviosité : </h3>
+                        <h5 id="pluv">-- mm/m²</h5>
+                    </label>
+                </div>
+            </div>
+            <div id="temperature-swipe" class="col s12 swipe">
+                <div class="general-content">
+                    <label>
+                        <h3>Température : </h3>
+                        <h5 id="tempChart">--°C</h5>
+                    </label>
+                    <div class="chart" id="temperature-chart"></div>
+                </div>
+            </div>
+            <div id="pluie-swipe" class="col s12 swipe">
+                <label>
+                    <h3>Pluviosité : </h3>
+                    <h5 id="pluvChart">-- mm/m²</h5>
+                </label>
+                <div class="chart" id="pluie-chart"></div>
+            </div>
+            <div id="france-swipe" class="col s12 swipe">
+                <div class="chart" id="france-chart"></div>
+                <div class="general-content">
+                    <label>
+                        <h3>Température : </h3>
+                        <h5 id="tempFR">--°C</h5>
+                    </label>
+                    <label>
+                        <h3>Pluviosité : </h3>
+                        <h5 id="pluvFR">-- mm/m²</h5>
+                    </label>
+                </div>
+            </div>
         </div>
     </div>
     

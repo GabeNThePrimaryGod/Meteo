@@ -7,16 +7,42 @@ const DOM = {
     show : document.getElementById("show")
 }
 
+const turboFormater = new TurboFormater({
+    dataPath : "/assets/data/meteo.json",
+    indexs : ["d", null, "n", null, "h"]
+});
+
 async function onStart()
 {
-    const turboFormater = new TurboFormater({
-        dataPath : "/assets/data/meteo.json",
-        indexs : ["d", null, "n", null, "h"]
-    });
 
     await turboFormater.load()
 
-    DOM.show.addEventListener('click', () => {
+    var range = document.getElementById("timeline");
+
+    var temp = document.getElementById("temp");
+    var pluv = document.getElementById("pluv");
+    var tempFR = document.getElementById("tempFR");
+    var pluvFR = document.getElementById("pluvFR");
+    var tempChart = document.getElementById("tempChart");
+    var pluvChart = document.getElementById("pluvChart");
+
+    range.addEventListener('change', () => {
+        temp.innerHTML = turboFormater.getDay(range.value).getStation("NICE").averageTemp+"°C";
+        tempFR.innerHTML = turboFormater.getDay(range.value).averageTemp+"°C";
+        tempChart.innerHTML = turboFormater.getDay(range.value).getStation("NICE").averageTemp+"°C";
+        pluv.innerHTML = turboFormater.getDay(range.value).getStation("NICE").averageHumidity+" mm/m²"
+        pluvFR.innerHTML = turboFormater.getDay(range.value).averageHumidity+" mm/m²"
+        pluvChart.innerHTML = turboFormater.getDay(range.value).getStation("NICE").averageHumidity+" mm/m²"
+    });
+
+    var stations = turboFormater.getDay(1).stations;
+    var dropdown = document.getElementById("dropdown-content");
+
+    for (const station of stations) {
+        dropdown.innerHTML += `<div class="dd-content">${station.name}</div>`;
+    }
+
+    /*DOM.show.addEventListener('click', () => {
 
         const day = DOM.day.value;
         const station = DOM.station.value;
@@ -50,25 +76,9 @@ async function onStart()
         turboFormater.days.map(d => d.hours.map(h => allhours.push(h.data)))
 
         console.log("global hours", allhours);
-    });
+    });*/
 }
 
-//onStart();
 
+onStart();
 
-
-
-
-
-
-
-
-function dropDown()
-{
-    document.getElementById('dropdown').hidden = !document.getElementById('dropdown').hidden;
-}
-
-function dropDownClick(input)
-{
-    console.log(input.getAttribute("value"));
-}

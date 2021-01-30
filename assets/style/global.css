@@ -23,5 +23,30 @@
     height: 55em;
 }
 
+.general-content {
+    display:flex;
+    flex-direction: column;
+    padding: 0.5rem;
+}
 
+.chart {
+    overflow: auto;
+}
 
+.temperature-line {
+    fill: none;
+    stroke:crimson;
+    stroke-width: 2px;
+}
+
+.pluie-line {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 2px;
+}
+
+.france-line {
+    fill: none;
+    stroke:rgb(38,166,154);
+    stroke-width: 2px;
+}
