@@ -6,11 +6,18 @@
     var projection = d3.geoMercator().translate([w/2, h/2]).scale(sca).center([lat,long]);
     var path = d3.geoPath().projection(projection);
 
+    //point
+    var projection = d3.geoMercator().center(43.648833,7.209)
+    aa = [43.648833,7.209];
+    bb= [43.648833,7.209];
+
   // load data  
 var worldmap = d3.json("/Meteo/assets/data/countries.geojson");
 var cities = d3.csv("/Meteo/assets/data/cities.csv");
+var ville = d3.json("/Meteo/assets/data/meteo.json")
 
-Promise.all([worldmap, cities]).then(function(values){    
+
+Promise.all([worldmap, cities, ville]).then(function(values){    
  // draw map
     svg.selectAll("path")
         .data(values[0].features)
@@ -39,6 +46,22 @@ Promise.all([worldmap, cities]).then(function(values){
         .attr("y", function(d) {return projection([d.Longitude, d.Lattitude])[1] + 15;})
         .attr("class","labels");
 
-	});
+
+  });
+  
+
 }
+
+function draw() {
+  g.selectAll(".pin")
+    .data(ville)
+    .enter().append("circle", ".pin")
+    .attr("r", 7)
+    .attr("class", "point")
+    .attr("transform", function (d) {
+      return "translate(" + projection([
+        43.648833,7.209
+      ]) + ")";
+    })
+    };
 
