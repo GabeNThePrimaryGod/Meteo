@@ -4,7 +4,8 @@ const DOM = {
     day : document.getElementById("day"),
     station : document.getElementById("station"),   
     hour : document.getElementById("hour"),
-    show : document.getElementById("show")
+    show : document.getElementById("show"),
+    ddContents : document.getElementsByClassName("dd-content")
 }
 
 async function onStart()
@@ -16,13 +17,26 @@ async function onStart()
 
     await turboFormater.load()
 
-    DOM.show.addEventListener('click', () => {
+    for(const ddElement of DOM.ddContents)
+    {
+        ddElement.addEventListener('click', () => {
+
+            console.log(ddElement.innerHTML);
+    
+        });
+    }
+}
+
+onStart();
+
+
+/*
 
         const day = DOM.day.value;
         const station = DOM.station.value;
         const hour = DOM.hour.value;
 
-        if(day && station && hour)
+if(day && station && hour)
         {
             console.log("day & station & hour") 
             console.log("day & station & hour", turboFormater.getDay(day).getStation(station).getHour(hour).data)
@@ -50,25 +64,4 @@ async function onStart()
         turboFormater.days.map(d => d.hours.map(h => allhours.push(h.data)))
 
         console.log("global hours", allhours);
-    });
-}
-
-//onStart();
-
-
-
-
-
-
-
-
-
-function dropDown()
-{
-    document.getElementById('dropdown').hidden = !document.getElementById('dropdown').hidden;
-}
-
-function dropDownClick(input)
-{
-    console.log(input.getAttribute("value"));
-}
+*/

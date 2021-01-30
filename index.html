@@ -14,8 +14,8 @@
 
     <!-- LIB -->
     <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style/fontawesome/css/fontawesome.min.css" />
-    <link rel="stylesheet" href="style/fontawesome/css/solid.min.css" />
+    <link rel="stylesheet" href="assets/style/fontawesome/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="assets/style/fontawesome/css/solid.min.css" />
 
     <script src="https://d3js.org/d3.v4.js"></script>
     <!-- LIB -->
@@ -23,7 +23,7 @@
     <!-- ANOU -->
     <link rel="stylesheet" href="assets/style/global.css" />
     <!-- ANOU -->
-    
+
 </head>
 
 <body>
@@ -41,18 +41,20 @@
                     </form>
 
                 </div>
-                <div class="col s4">
-                    
-                    <!--<div class="dropdown">
-                        <button onclick="dropDown()" 
-                        class="waves-effect waves-dark btn">Dropdown</button>
-                        <div id="dropdown">
-                          <div onclick="dropDownClick(this)" value="1">Home</div>
-                          <div onclick="dropDownClick(this)" value="2">About</div>
-                          <div onclick="dropDownClick(this)" value="3">Contact</div>
+                <div id="padd0" class="col s4">
+                    <!--DROPDOWN-->
+                    <div class="dropdown">
+                        <button onclick="dropDown()" class="waves-effect waves-dark btn btn-dd">Dropdown</button>
+                        
+                        <div id="dropdown-content" class="z-depth-3" style="display: none;">
+                          <div class="dd-content" onclick="dropDown()" value="1">Home</div>
+                          <div class="dd-content" onclick="dropDown()" value="2">About</div>
+                          <div class="dd-content" onclick="dropDown()" value="3">Contact</div>
+                          <div class="dd-content" onclick="dropDown()" value="4">Sus</div>
+                          <div class="dd-content" onclick="dropDown()" value="5">Ceci est une phrase longue à titre de stress test.</div>
                         </div>
-                      </div>
-                    -->
+                    </div>
+                    <!--DROPDOWN-->
                 </div>
             </div>
         </div>
@@ -61,7 +63,6 @@
 
 
     <div class="body-container">
-
         <div id="map-container" class="map-container">
 
             <!-- PRELOADER -->
@@ -85,7 +86,6 @@
             <!-- PRELOADER -->
 
         </div>
-
         <div class="right-tab-container">
             <ul class="tabs side-container">
                 <li class="tab col s3"><a href="#general-swipe" class="active">GENERAL</a></li>
@@ -98,16 +98,16 @@
             <div id="pluie-swipe" class="col s12 swipe">Test 3</div>
             <div id="pluie-swipe2" class="col s12 swipe">Test 3</div>
         </div>
-        
     </div>
     
 </body>
 <footer>
     <script type="module" src="/assets/js/main.js"></script>
+    <script src="/assets/js/dropDown.js"></script>
 
     <!-- TEMPORAIRE -->
     <script src="/assets/js/map-bryan.js"></script>
-    <script src="/assets/js/graph-corentin.js"></script>
     <!-- TEMPORAIRE -->
+
 </footer>
 </html>

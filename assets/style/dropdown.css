@@ -1,0 +1,31 @@
+#padd0 {
+    padding: 0rem;
+}
+
+#dropdown-content {
+    background-color: rgb(56, 66, 66);
+    position: absolute;
+    width:10rem;
+    z-index: 999;
+    overflow: auto !important;
+    border-radius: 0rem 0rem 1rem 1rem;
+    margin-top: 4rem;
+    margin-right: 3rem;
+    right: 0;
+}
+
+.dd-content {
+    padding:0.6rem;
+}
+
+.dd-content:hover {
+    background-color: rgb(56, 61, 61);
+}
+
+.btn-dd {
+    float: right;
+    height: 2.5rem;
+    width:10rem;
+    margin-top: 1.5rem;
+    margin-right: 3rem;
+}
