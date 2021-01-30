@@ -12,14 +12,21 @@ export default class TurboFormater {
     }
 
     async load() {
+
+        console.log("fetching data...");
+
         const response = await fetch(this.dataPath)
         const text = await response.text()
         const rawData = await JSON.parse(text);
         
         const formatedData = {};
     
+        console.log("formating data...");
+
         this.formatDataLoop(rawData, formatedData);
-    
+        
+        console.log("success", formatedData);
+
         this.data = formatedData;
         return this.data;
     }
@@ -38,7 +45,7 @@ export default class TurboFormater {
                 formatedData[key] = value;
             } else {
                 // si c'est un objet ou un tableau on le stock pour le parcourir ensuite
-                iterables.push(value) // cpy
+                iterables.push(value)
             }
     
             for (const iterable of iterables) {

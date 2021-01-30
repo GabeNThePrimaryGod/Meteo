@@ -69,9 +69,10 @@ export class Station {
         this.day = day;
     }
 
-    get name() { return this._.n };
-    get lat() { return this._.lat };
-    get lng() { return this._.lng };
+    get name() { return this._.n }
+    get lat() { return this._.lat }
+    get lng() { return this._.lng }
+    get pos() { return [this.lng, this.lat] }
     get averageTemp() { return this._.t / 100; }
     get averageHumidity() { return this._.p; }
 
