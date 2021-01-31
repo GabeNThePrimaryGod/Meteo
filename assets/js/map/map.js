@@ -4,10 +4,6 @@ export const maps = new Map();
 
 export function createMaps() {
     maps.set("map1", new SvgMap(5, 46, 2500, "map1", 1400, 700));
-    maps.set("map2", new SvgMap(-61, 15.5, 15000, "map2", 1400, 700));
-    maps.set("map3", new SvgMap(-54, 4.2, 5000, "map3", 1400, 700));
-    maps.set("map4", new SvgMap(55.5, -21.2, 30000, "map4", 1400, 700));
-    maps.set("map5", new SvgMap(45, -12.8, 40000, "map5", 1400, 700));
 }
 
 export function refreshMap()
@@ -65,8 +61,8 @@ export class SvgMap {
             .enter()
             .append("circle", ".pin")
             .attr("transform", (d) => `translate(${this.projection(d.pos)})`)
-            .attr("r", "40px")
-            .attr("fill", "red")
+            .attr("r", "8px")
+            .attr("fill", "#5BB4E8")
             .on('click', onclick);
 
             function onclick(d)
@@ -78,7 +74,7 @@ export class SvgMap {
             .data(points)
             .enter().append("text")
             .attr('class', ".pin-text")
-            .attr("style", "font-size: 200px")
+            .attr("style", "font-size: 30px; text-shadow: 0 0 black")
             .attr("text-anchor", "middle")
             .attr("transform", (d) => `translate(${this.projection([d.pos[0], d.pos[1] + 0.10 ])})`)
             .text(() => "10 °C")
