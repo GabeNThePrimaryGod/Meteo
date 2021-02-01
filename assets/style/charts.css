@@ -1,0 +1,22 @@
+.tick {
+    font-size: 2.5em;
+}
+
+.axis line{
+    stroke: #706f6f;
+    stroke-width: 0.5;
+    shape-rendering: crispEdges;
+}
+    
+/* axis contour */
+.axis path {
+    stroke: #706f6f;
+    stroke-width: 0.7;
+    shape-rendering: crispEdges;
+}
+    
+/* axis text */
+.axis text {
+    font-family: Georgia;
+    font-size: 120%;
+}

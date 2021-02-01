@@ -1,12 +1,15 @@
 import { Day } from "./dataClass.js";
+import EventEmitter from "../EventEmitter.js";
 
-export default class TurboFormater {
+export default class TurboFormater extends EventEmitter {
     /**
      * 
      * @param {any} config 
      */
     constructor(config = {}) 
     {
+        super(); //👌
+
         this.dataPath = config.dataPath || "/assets/data/meteo.json";
         this.indexs = config.indexs || ["d", null, "n", null, "h"];
     }
@@ -25,8 +28,9 @@ export default class TurboFormater {
 
         this.formatDataLoop(rawData, formatedData);
         
-        console.log("success", formatedData);
+        console.log("success");
 
+        this.emit('loaded');
         this.data = formatedData;
         return this.data;
     }
@@ -35,8 +39,8 @@ export default class TurboFormater {
         const index = this.indexs[curr];
     
         for (const _key in currentData) {
-            const value = currentData[_key]; // cpy
-            const key = (value[index]) ? value[index] : _key; // cpy
+            const value = currentData[_key];
+            const key = (value[index]) ? value[index] : _key;
     
             const iterables = [];
     
