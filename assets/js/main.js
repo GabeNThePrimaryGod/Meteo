@@ -8,14 +8,10 @@ import {
 } from "./charts.js";
 
 export const DOM = {
-    dayText : document.getElementById("day-text"),
+    dayText : document.getElementById("day-blockquote"),
     mapPreloader : document.getElementById("map-preloader"),
     maps : [
-        document.getElementById("map1"),
-        document.getElementById("map2"),
-        document.getElementById("map3"),
-        document.getElementById("map4"),
-        document.getElementById("map5"),    
+        document.getElementById("map1"),   
     ],
     tabs : {
         generalTab : document.getElementById("general-tab"),
@@ -93,7 +89,7 @@ async function initInputsEvents()
     DOM.timelineRange.addEventListener('change', () => {
 
         inputs.day = Number.parseInt(DOM.timelineRange.value);
-        DOM.dayText = `Jour ${inputs.day}`;
+        DOM.dayText.innerHTML = `Jour ${inputs.day}`;
 
         load();
     });

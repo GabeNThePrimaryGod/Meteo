@@ -1,17 +1,7 @@
-html {
-    background-color: black;
-}
-
 :root {
     --background: rgb(51, 51, 51);
 }
 
 .background-dark {
     background-color: var(--background);
-}
-
-html {
-    background-color: var(--background);
-    font-family: 'Dosis', sans-serif;
-    color: rgb(200, 200, 200);
 }
