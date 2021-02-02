@@ -14,97 +14,129 @@
 
     <!-- LIB -->
     <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style/fontawesome/css/fontawesome.min.css" />
-    <link rel="stylesheet" href="style/fontawesome/css/solid.min.css" />
-
-    <script src="https://d3js.org/d3.v4.js"></script>
+    <link rel="stylesheet" href="assets/style/fontawesome/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="assets/style/fontawesome/css/solid.min.css" />
     <!-- LIB -->
 
     <!-- ANOU -->
     <link rel="stylesheet" href="assets/style/global.css" />
     <!-- ANOU -->
 
+    <!-- MAP -->
+    <script type="text/javascript" src="https://d3js.org/d3.v5.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/style/map.css">
+    <!-- MAP -->
+
 </head>
 
 <body>
 
-    <header>
+    <div class="container">
 
-        <div class="header-container">
-            <div class="row">
-                <div class="col s8">
-
-                    <form action="#">
-                        <p class="range-field">
-                            <input type="range" id="timeline" min="0" max="28" />
-                        </p>
-                    </form>
-
-                </div>
-                <div class="col s4">
-                    
-                    <!--<div class="dropdown">
-                        <button onclick="dropDown()" 
-                        class="waves-effect waves-dark btn">Dropdown</button>
-                        <div id="dropdown">
-                          <div onclick="dropDownClick(this)" value="1">Home</div>
-                          <div onclick="dropDownClick(this)" value="2">About</div>
-                          <div onclick="dropDownClick(this)" value="3">Contact</div>
-                        </div>
-                      </div>
-                    -->
-                </div>
+        <blockquote class="col s12" id="day-blockquote">
+            Jour 15
+        </blockquote>
+        
+        <div class="row s12">
+            <div class="col s12 m10 l10">
+                <p class="range-field">
+                    <input type="range" id="timeline-range" min="1" max="28" />
+                </p>
             </div>
+            <div class="col s2 m2 l2">
+                <!--DROPDOWN-->
+                <div class="dropdown">
+                    <button id="dropdown-button" onclick="dropDown()" class="waves-effect waves-dark btn btn-dd red lighten-1">Select. Station</button>
+                    
+                    <div id="dropdown-content" class="z-depth-3" style="display: none;"></div>
+                </div>
+                <!--DROPDOWN-->
+            </div>  
         </div>
 
-    </header>
+        <div class="row s12">
+            <div class="col s12 m8 l8 map-container">
+                <!-- PRELOADER -->
+                <div class="map-preloader" id="map-preloader">
 
-
-    <div class="body-container">
-        <div id="map-container" class="map-container">
-
-            <!-- PRELOADER -->
-            <div class="map-preloader">
-
-                <div class="preloader-wrapper big active">
-                    <div class="spinner-layer spinner-blue-only">
-                        <div class="circle-clipper left">
-                            <div class="circle"></div>
-                        </div>
-                        <div class="gap-patch">
-                            <div class="circle"></div>
-                        </div>
-                        <div class="circle-clipper right">
-                            <div class="circle"></div>
+                    <div class="preloader-wrapper big active">
+                        <div class="spinner-layer spinner-blue-only">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="gap-patch">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
                         </div>
                     </div>
+
                 </div>
+                <!-- PRELOADER -->
 
+                <div id="map1" class="svg-container map" hidden></div>
+                
             </div>
-
-            <!-- PRELOADER -->
-        </div>
-        <div class="right-tab-container">
-            <ul class="tabs side-container">
-                <li class="tab col s3"><a href="#general-swipe" class="active">GENERAL</a></li>
-                <li class="tab col s3"><a href="#temperature-swipe">TEMPERATURE</a></li>
-                <li class="tab col s3"><a href="#pluie-swipe">PLUIE</a></li>
-                <li class="tab col s3"><a href="#pluie-swipe2">PLUIE</a></li>
-            </ul>
-            <div id="general-swipe" class="col s12 swipe">Test 1</div>
-            <div id="temperature-swipe" class="col s12 swipe">Test 2</div>
-            <div id="pluie-swipe" class="col s12 swipe">Test 3</div>
-            <div id="pluie-swipe2" class="col s12 swipe">Test 3</div>
+            <div class="col s12 m4 l4">
+                <ul class="tabs background-dark">
+                    <li id="general-tab" class="tab col s3 disabled"><a id="general-tab-link" href="#general-swipe">GENERAL</a></li>
+                    <li id="temperature-tab" class="tab col s3 disabled"><a id="temperature-tab-link" href="#temperature-swipe">TEMPERATURE</a></li>
+                    <li id="pluie-tab" class="tab col s3 disabled"><a id="pluie-tab-link" href="#pluie-swipe">PLUIE</a></li>
+                    <li id="france-tab" class="tab col s3"><a id="france-tab-link" href="#france-swipe" class="active">FRANCE</a></li>
+                </ul>
+                <div id="general-swipe" class="col s12 swipe swipe-nul">
+                    <div class="general-content">
+                        <label>
+                            <h3>Station sélectionnée : </h3>
+                            <h5 id="station">NICE</h5>
+                        </label>
+                        <label>
+                            <h3>Température : </h3>
+                            <h5 id="temp">--°C</h5>
+                        </label>
+                        <label>
+                            <h3>Pluviosité : </h3>
+                            <h5 id="pluv">-- mm/m²</h5>
+                        </label>
+                    </div>
+                </div>
+                <div id="temperature-swipe" class="col s12 swipe swipe-nul">
+                    <div class="general-content">
+                        <label>
+                            <h3>Température : </h3>
+                            <h5 id="tempChart">--°C</h5>
+                        </label>
+                        <div class="chart" id="temperature-chart"></div>
+                    </div>
+                </div>
+                <div id="pluie-swipe" class="col s12 swipe swipe-nul">
+                    <label>
+                        <h3>Pluviosité : </h3>
+                        <h5 id="pluvChart">-- mm/m²</h5>
+                    </label>
+                    <div class="chart" id="pluie-chart"></div>
+                </div>
+                <div id="france-swipe" class="col s12 swipe swipe-nul">
+                    <div class="chart" id="france-chart"></div>
+                    <div class="general-content">
+                        <label>
+                            <h3>Température : </h3>
+                            <h5 id="tempFR">--°C</h5>
+                        </label>
+                        <label>
+                            <h3>Pluviosité : </h3>
+                            <h5 id="pluvFR">-- mm/m²</h5>
+                        </label>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    
 </body>
 <footer>
     <script type="module" src="/assets/js/main.js"></script>
-
-    <!-- TEMPORAIRE -->
-    <script src="/assets/js/map-bryan.js"></script>
-    <script src="/assets/js/graph-corentin.js"></script>
-    <!-- TEMPORAIRE -->
+    <script src="/assets/js/dropDown.js"></script>
 </footer>
 </html>

@@ -1,0 +1,46 @@
+#dropdown-content {
+    z-index: 999;
+    position: absolute;
+    overflow: auto !important;
+    background-color: #e57373;
+    max-height: 30rem;
+}
+
+.dd-content {
+    padding:0.6rem;
+    cursor: pointer;
+}
+
+.dd-content:hover {
+    background-color: rgb(56, 61, 61);
+}
+
+/*#padd0 {
+    padding: 0rem;
+}
+
+#dropdown-content {
+    
+    position: absolute;
+    width: 15rem;
+    z-index: 999;
+    overflow: auto !important;
+    
+    border-radius: 0rem 0rem 1rem 1rem;
+    margin-top: 4rem;
+    margin-right: 3rem;
+    right: 0;
+}
+
+.dd-content {
+    padding:0.6rem;
+    cursor: pointer;
+}
+
+.btn-dd {
+    float: right;
+    height: 2.5rem;
+    width: 15rem;
+    margin-top: 1.5rem;
+    margin-right: 3rem;
+}*/

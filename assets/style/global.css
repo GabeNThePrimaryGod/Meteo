@@ -1,29 +1,23 @@
 @import url("color.css");
-@import url("responsive.css");
 @import url("right-tab.css");
 @import url("map.css");
+@import url("charts.css");
+@import url("dropdown.css");
+@import url("scrollbar.css");
 
-.header-container {
-    height: 6em;
-    width: auto;
-    border-bottom: 2px solid rgb(81, 81, 81);
+html {
+    background-color: var(--background);
+    font-family: 'Dosis', sans-serif;
+    color: rgb(200, 200, 200);
 }
 
-.body-container {
-    display: flex;
-    flex-direction: row;
-    height: 100%;
+.swipe-nul {
+    height: 55rem
 }
 
 .map-preloader {
     display: flex;
     justify-content : center;
     align-items : center;
-    height: 55em;
-}
-
-#dropdown {
-    background-color: aliceblue;
-    display: block;
-    z-index: 999;
+    height: 32em;
 }

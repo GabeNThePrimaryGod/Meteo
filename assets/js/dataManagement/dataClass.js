@@ -6,8 +6,8 @@ export class Day {
     }
 
     get day() { return this._.d; }
-    get averageTemp() { return this._.t / 100; }
-    get averageHumidity() { return this._.p; }
+    get averageTemp() { return Math.round(this._.t / 100); }
+    get averageHumidity() { return Math.round(this._.p); }
     
     getStation(s)
     {
@@ -69,11 +69,12 @@ export class Station {
         this.day = day;
     }
 
-    get name() { return this._.n };
-    get lat() { return this._.lat };
-    get lng() { return this._.lng };
-    get averageTemp() { return this._.t / 100; }
-    get averageHumidity() { return this._.p; }
+    get name() { return this._.n }
+    get lat() { return this._.lat }
+    get lng() { return this._.lng }
+    get pos() { return [this.lng, this.lat] }
+    get averageTemp() { return Math.round(this._.t / 100); }
+    get averageHumidity() { return Math.round(this._.p); }
 
     getHour(h) 
     { 
@@ -112,8 +113,8 @@ export class Hour {
     }
 
     get hour() { return this._.h }
-    get temp() { return this._.t / 100 }
-    get humidity() { return this._.p }
+    get temp() { return Math.round(this._.t / 100) }
+    get humidity() { return Math.round(this._.p) }
 
     get data() {
         return {
